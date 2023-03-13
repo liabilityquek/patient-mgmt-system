@@ -59,8 +59,8 @@
                             <option value="" disabled selected></option>
                             <option value="SINGAPOREAN" <% if (p.nationality==='SINGAPOREAN' ) { %>selected<% } %>
                                     >SINGAPORE CITIZEN</option>
-                            <option value="WORK PERMIT" <% if (p.nationality==='WORK PERMIT' ) { %>selected<% } %>>WORK
-                                    PERMIT</option>
+                                    <option value="WORK PERMIT" <% if (p.nationality==='WORK PERMIT' ) { %>selected<% } %>
+                                        >WORK PERMIT</option>
                             <option value="PR" <% if (p.nationality==='PR' ) { %>selected<% } %>>PR</option>
                             <option value="S-PASS" <% if (p.nationality==='S-PASS' ) { %>selected<% } %>>S-PASS</option>
                             <option value="E-PASS" <% if (p.nationality==='E-PASS' ) { %>selected<% } %>>E-PASS</option>
@@ -126,6 +126,8 @@
                     <form method="POST" action="/patients/<%= p.nricfin %>?_method=PUT">
                         <select name="vaccinationtype">
                             <option value="" disabled selected></option>
+                            <option value="" <% if (p.vaccinationtype==='' ) { %>selected<% } %>>
+                            </option>
                             <option value="pfizer" <% if (p.vaccinationtype==='pfizer' ) { %>selected<% } %>>PFIZER
                             </option>
                             <option value="moderna" <% if (p.vaccinationtype==='moderna' ) { %>selected<% } %>>MODERNA

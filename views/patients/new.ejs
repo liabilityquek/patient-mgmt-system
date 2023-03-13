@@ -6,7 +6,7 @@
         <label>Name:
             <input type="text" name="name" /> </label><br />
         <label>Contact No:
-            <input type="number" name="contactno" /> </label><br />
+            <input type="text" name="contactno" /> </label><br />
         <label>DOB:
             <input type="date" name="dob" /> </label><br />
         <label>Gender:
@@ -33,12 +33,12 @@
         <label>Drug Allergies (separate with commas):
             <input type="text" name="drugallergies" /> </label><br />
         <label>Vaccinated:
-            <select name="vaccination">
+            <select id="vaccination" name="vaccination">
                 <option value="" disabled selected></option>
                 <option value="YES">YES</option>
                 <option value="NO">NO</option>
             </select> </label><br />
-        <label>Vaccination Type:
+        <label id="vaccination-type-label" style="display: none;">Vaccination Type:
             <select name="vaccinationtype">
                 <option value="" disabled selected></option>
                 <option value="PFIZER">PFIZER</option>

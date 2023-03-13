@@ -28,8 +28,8 @@ app.use(methodOverride('_method'));
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: true,
-  cookie: { maxAge: 60000 }, //10 mins logout of inactivity
+  saveUninitialized: false,
+  cookie: { maxAge: 600000 }, //10 mins logout of inactivity
   store: sessionStore
 }))
 
