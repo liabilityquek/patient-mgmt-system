@@ -1,0 +1,92 @@
+<%- include('../partials/header') %>
+
+<h2>Patient Profile</h2>
+<table border="1">
+  <thead>
+    <tr>
+      <th>NRIC/FIN</th> 
+      <th>Name</th>
+      <th>Contact No</th>
+      <th>DOB</th>
+      <th>Gender</th>
+      <th>Nationality</th>
+      <th>Street Address</th>
+      <th>Postal Code</th>
+      <th>Unit No</th>
+      <th>Drug Allergies</th>
+      <th>Vaccinated</th>
+      <th>Vaccination Model</th>
+      <th>Profile Created Date</th>
+      <th>Patient's Log</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Write the line of EJS to iterate over movies using forEach -->
+    <% patients.forEach(p => { %>
+      <tr>
+        <td><%= p.nricfin %></td>
+        <td><%= p.name %></td>
+        <td><%= p.contactno %></td>
+        <td><%= p.dobFormatted %></td>
+        <td><%= p.gender %></td>
+        <td><%= p.nationality %></td>
+        <td><%= p.streetaddress %></td>
+        <td><%= p.postalcode %></td>
+        <td><%= p.unitno %></td>
+        <td><%= p.drugallergies %></td>
+        <td><%= p.vaccinated ? "Yes" : "No" %></td>
+        <td><%= p.vaccinationtype %></td>
+        <td><%= p.createdAtFormatted %></td>
+
+        <td>
+          <table>
+            <% p.log.forEach(patientlog => { %>
+              <tr>
+                
+                <td>
+                  <form method="POST" action="/patients/<%= p._id %>/<%= patientlog._id%>?_method=PUT">
+                    <input type="text" name="content" value="<%= patientlog.content %>">
+                    <button type="submit">Update Log</button>
+                  </form>
+                </td>
+                <td>
+                  <form method="POST" action="/patients/<%= p._id %>/<%= patientlog._id%>?_method=DELETE">
+                    <button type="submit">Delete Log</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+          <h2>Issue Queue No</h2>
+          <form action="/queueno/showqueue" method="POST">
+            <label>Name:
+              <input type="text" name="name" value="<%= p.name %>" /> 
+            </label>
+            <br />
+            <label>Type
+              <select name="type">
+                <option value="priority">Priority</option>
+                <option value="normal">Normal</option>
+              </select>
+            </label><br />
+            <button type="submit">Generate Queue No</button>
+          </form>
+
+    <% }) %>
+
+
+
+<h2>Add Patient Log</h2>
+<form method="POST" action="/patients/<%= nricfin %>">
+  <input type="text" name="content" placeholder="Enter patient log here">
+  <button type="submit">Add</button>
+</form>
+
+
+<%- include('../partials/footer') %>

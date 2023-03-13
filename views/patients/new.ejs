@@ -1,0 +1,52 @@
+<%- include('../partials/header') %>
+    <h2>Create New Patient Record</h2>
+    <form action="/patients" method="POST">
+        <label>NRIC/FIN:
+            <input type="text" name="nricfin" /> </label><br />
+        <label>Name:
+            <input type="text" name="name" /> </label><br />
+        <label>Contact No:
+            <input type="number" name="contactno" /> </label><br />
+        <label>DOB:
+            <input type="date" name="dob" /> </label><br />
+        <label>Gender:
+            <select name="gender">
+                <option value="" disabled selected></option>
+                <option value="MALE">MALE</option>
+                <option value="FEMALE">FEMALE</option>
+            </select> </label><br />
+        <label>Nationality:
+            <select name="nationality">
+                <option value="" disabled selected></option>
+                <option value="SINGAPPOREAN">SINGAPORE CITIZEN</option>
+                <option value="WORK PERMIT">WORK PERMIT</option>
+                <option value="PR">PR</option>
+                <option value="S-PASS">S-PASS</option>
+                <option value="E-PASS">E-PASS</option>
+            </select> </label><br />
+        <label>Street Address:
+            <input type="text" name="streetaddress" /> </label><br />
+        <label>Postal Code:
+            <input type="number" name="postalcode" /> </label><br />
+        <label>Unit No:
+            <input type="text" name="unitno" /> </label><br />
+        <label>Drug Allergies (separate with commas):
+            <input type="text" name="drugallergies" /> </label><br />
+        <label>Vaccinated:
+            <select name="vaccination">
+                <option value="" disabled selected></option>
+                <option value="YES">YES</option>
+                <option value="NO">NO</option>
+            </select> </label><br />
+        <label>Vaccination Type:
+            <select name="vaccinationtype">
+                <option value="" disabled selected></option>
+                <option value="PFIZER">PFIZER</option>
+                <option value="MODERNA">MODERNA</option>
+                <option value="NOVAVAX">NOVAVAX</option>
+                <option value="SINOVAC">SINOVAC</option>
+            </select> </label><br />
+
+        <button type="submit">Create Patient Profile</button>
+    </form>
+    <%- include('../partials/footer') %>

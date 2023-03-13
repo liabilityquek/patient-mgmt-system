@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Management System</title>
+  <link rel="stylesheet" href='/stylesheets/style.css' />
+  <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  
+  <div class="container-fluid">
+
+    <!--- Header Start -------->
+    <div class="row header">
+
+      <div class="col-md-10">
+        <h2>Patient Mangement System</h2>
+      </div>
+
+      <div class="col-md-2 ">
+        <ul class="nav nav-pills ">
+          <li class="dropdown dmenu">
+            <form method="post" action="/your/action" >
+              <button type="submit" class="btn btn-primary btn-white" aria-haspopup="true"
+              aria-expanded="false">Logout</button>
+
+            </form>
+            
+            
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    
+    <!--- Header Ends --------->
+
+    <div class="row">
+
+      <!----- Menu Area Start ------>
+      <div class="col-md-2 menucontent">
+
+    
+          <h1 id="dashboard">Dashboard</h1>
+
+
+        <ul class="nav nav-pills nav-stacked">
+          <li role="presentation">
+            <form action="/patients/show" method="GET">
+              <input type="text" name="nricfin" placeholder="Enter Patient's NRIC/FIN No">
+              <button type="submit" id="amend">Amend Patient Profile</button>
+            </form>
+          </li>
+          <li role="presentation">
+            <form action="/queueno/showqueue" method="GET">
+              <button type="submit">Today's Queue</button>
+            </form>
+          </li>
+          <li role="presentation">
+            <form action="/patients/new" method="GET">
+              <button type="submit">Patient Registration</button>
+            </form>
+          </li>
+          <li role="presentation">
+            <form action="/patients/lookup" method="GET">
+              <input type="text" name="nricfin" placeholder="Enter Patient's NRIC/FIN No">
+              <button type="submit" id="retrieve">Retrieve Patient Profile</button>
+            </form>
+          </li>
+
+
+        </ul>
+      </div>

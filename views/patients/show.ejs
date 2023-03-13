@@ -1,0 +1,156 @@
+<%- include('../partials/header') %>
+
+    <h2>Patient Profile</h2>
+    <table border="1">
+
+        <% patients.forEach(p=> { %>
+
+            <tr>
+                <td><strong>NRIC/FIN:</strong></td>
+                <td>
+                    <%= p.nricfin %>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Name:</strong></td>
+                <td>
+                    <form method="POST" action="/patients/<%= p.nricfin %>?_method=PUT">
+                        <input type="text" name="name" value="<%= p.name %>">
+                        <button type="submit">Save</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Contact No:</strong></td>
+                <td>
+                    <form method="POST" action="/patients/<%= p.nricfin%>?_method=PUT">
+                        <input type="text" name="contactno" value="<%= p.contactno %>">
+                        <button type="submit">Save</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>DOB:</strong></td>
+                <td>
+                    <form method="POST" action="/patients/<%= p.nricfin %>?_method=PUT">
+                        <input type="date" name="dobFormatted" value="<%= p.dobFormatted %>">
+                        <button type="submit">Save</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Gender:</strong></td>
+                <td>
+                    <form method="POST" action="/patients/<%= p.nricfin %>?_method=PUT">
+                        <select name="gender">
+                            <option value="" disabled selected></option>
+                            <option value="MALE" <% if (p.gender==='MALE' ) { %>selected<% } %>>MALE</option>
+                            <option value="FEMALE" <% if (p.gender==='FEMALE' ) { %>selected<% } %>>FEMALE</option>
+                        </select>
+                        <button type="submit">Save</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Nationality:</strong></td>
+                <td>
+                    <form method="POST" action="/patients/<%= p.nricfin %>?_method=PUT">
+                        <select name="nationality">
+                            <option value="" disabled selected></option>
+                            <option value="SINGAPOREAN" <% if (p.nationality==='SINGAPOREAN' ) { %>selected<% } %>
+                                    >SINGAPORE CITIZEN</option>
+                            <option value="WORK PERMIT" <% if (p.nationality==='WORK PERMIT' ) { %>selected<% } %>>WORK
+                                    PERMIT</option>
+                            <option value="PR" <% if (p.nationality==='PR' ) { %>selected<% } %>>PR</option>
+                            <option value="S-PASS" <% if (p.nationality==='S-PASS' ) { %>selected<% } %>>S-PASS</option>
+                            <option value="E-PASS" <% if (p.nationality==='E-PASS' ) { %>selected<% } %>>E-PASS</option>
+                        </select>
+                        <button type="submit">Save</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Street Address:</strong></td>
+                <td>
+                    <form method="POST" action="/patients/<%= p.nricfin%>?_method=PUT">
+                        <input type="text" name="streetaddress" value="<%= p.streetaddress %>">
+                        <button type="submit">Save</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Postal Code:</strong></td>
+                <td>
+                    <form method="POST" action="/patients/<%= p.nricfin %>?_method=PUT">
+                        <input type="text" name="postalcode" value="<%= p.postalcode %>">
+                        <button type="submit">Save</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Unit No:</strong></td>
+                <td>
+                    <form method="POST" action="/patients/<%= p.nricfin %>?_method=PUT">
+                        <input type="text" name="unitno" value="<%= p.unitno %>">
+                        <button type="submit">Save</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Drug Allergies:</strong></td>
+                <td>
+                    <form method="POST" action="/patients/<%= p.nricfin %>?_method=PUT">
+                        <input type="text" name="drugallergies" value="<%= p.drugallergies.join(', ')%>">
+                        <button type="submit">Save</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Vaccinated:</strong></td>
+                <td>
+                    <form method="POST" action="/patients/<%= p.nricfin %>?_method=PUT">
+                        <select name="vaccination">
+                            <option value="" disabled selected></option>
+                            <option value="yes" <% if (p.vaccination==='yes' ) { %>selected<% } %>>YES
+                            </option>
+                            <option value="no" <% if (p.vaccination==='no' ) { %>selected<% } %>>NO
+                            </option>
+                        </select>
+                        <button type="submit">Save</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Vaccination Type:</strong></td>
+                <td>
+                    <form method="POST" action="/patients/<%= p.nricfin %>?_method=PUT">
+                        <select name="vaccinationtype">
+                            <option value="" disabled selected></option>
+                            <option value="pfizer" <% if (p.vaccinationtype==='pfizer' ) { %>selected<% } %>>PFIZER
+                            </option>
+                            <option value="moderna" <% if (p.vaccinationtype==='moderna' ) { %>selected<% } %>>MODERNA
+                            </option>
+                            <option value="novavax" <% if (p.vaccinationtype==='novavax' ) { %>selected<% } %>>NOVAVAX
+                            </option>
+                            <option value="sinovac" <% if (p.vaccinationtype==='sinovac' ) { %>selected<% } %>>SINOVAC
+                            </option>
+                        </select>
+                        <button type="submit">Save</button>
+                    </form>
+                </td>
+            </tr>
+            <td><strong>Profile Created Date:</strong></td>
+            <td>
+                <%= p.createdAtFormatted %>
+            </td>
+            </tr>
+
+            <form method="POST" action="/patients/<%= p.nricfin %>?_method=DELETE">
+                <button type="submit">Delete Patient Profile</button>
+            </form>
+
+            <% }) %>
+
+
+
+                <%- include('../partials/footer') %>

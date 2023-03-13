@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+
+<h2>Today's Queue</h2>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Queue No</th> 
+      <th>Name</th>
+      <th>Type</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% queueno.forEach(q => { %>
+      <tr>
+        <td><%= q.queueNo %></td>
+        <td><%= q.name %></td>
+        <td><%= q.type %></td>
+        <td><%= q.createdAtFormatted %></td>
+        <td>
+          <form method="POST" action="/queueno/<%= q._id %>?_method=DELETE">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>
