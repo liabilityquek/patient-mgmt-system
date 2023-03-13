@@ -1,17 +1,21 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-//var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config();
 require('./config/database');
-
 var indexRouter = require('./routes/index');
 var patientsRouter = require('./routes/patients');
 const usersRouter = require('./routes/users');
 const queuenoRouter = require('./routes/queueno');
 let methodOverride = require('method-override');
-const session = require('express-session')
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const sessionStore = MongoStore.create({
+  mongoUrl: process.env.DATABASE_URL,
+  collectionName: 'sessions' // See below for details
+});
 
 var app = express();
 
@@ -20,17 +24,19 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('trust proxy', 1) // trust first proxy
 app.use(methodOverride('_method')); 
-// app.use(session({
-//   secret: process.env.SECRET,
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: { maxAge: 60000 } //10 mins logout of inactivity
-// }))
+
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 }, //10 mins logout of inactivity
+  store: sessionStore
+}))
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//app.use(cookieParser());
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);

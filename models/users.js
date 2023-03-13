@@ -28,17 +28,6 @@ const usersSchema = new Schema(
       createdAt: "created_at",
       updatedAt: "updated_at",
     },
-    toJSON: {
-      transform: (_doc, ret) => {
-        delete ret.password;
-        return ret;
-      },
-      owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-      },
-    },
   }
 );
 

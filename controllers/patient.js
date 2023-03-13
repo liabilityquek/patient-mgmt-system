@@ -5,6 +5,7 @@ const newPatient = (req, res) => {
 };
 
 const createPatient = async (req, res) => {
+  console.log('Authorization: ', req.headers['authorization']);
   //req.body.vaccinated = !!req.body.vaccinated;
   console.log(req.body);
 
