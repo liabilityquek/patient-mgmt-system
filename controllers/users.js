@@ -112,7 +112,6 @@ const login = async (req, res) => {
     if (checkMatch) {
       console.log(req.body);
       req.session.userId = user._id;
-      console.log(`from checkmatch userid: ${id}`);
       console.log(`req.session.userId: ${req.session.userId}`);
       res.redirect("/patients");
     } else {
@@ -131,6 +130,7 @@ const isAuth = async (req, res, next) => {
 
     if (user) {
       req.user = user;
+      console.log(`req.user: ${req.user}`);
       next();
     } else {
       res.status(403).send("Forbidden");

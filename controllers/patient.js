@@ -1,4 +1,6 @@
 const Patient = require("../models/patient");
+const url = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+const axios = require("axios");
 
 const newPatient = (req, res) => {
   res.render("patients/new");
@@ -9,14 +11,19 @@ const directToHomePage = (req, res) => {
 };
 
 const createPatient = async (req, res) => {
-  console.log('Authorization: ', req.headers['authorization']);
-  //req.body.vaccinated = !!req.body.vaccinated;
-  console.log(req.body);
+  const streetaddress = req.body.streetaddress;
+  const apiKey = process.env.GOOGLE_API_KEY;
+  const apiUrl = `${url}${encodeURIComponent(streetaddress)}&key=${apiKey}`;
 
-  if (req.body.drugallergies) {
-    req.body.drugallergies = req.body.drugallergies.split(/\s*,\s*/);
-  }
   try {
+    // const response = await axios.get(apiUrl);
+    // const results = response.data.results;
+    // if (results && results.length > 0) {
+    //   const postalcode = results[0].address_components[5].long_name;
+
+    if (req.body.drugallergies) {
+      req.body.drugallergies = req.body.drugallergies.split(/\s*,\s*/);
+    }
 
     const patient = new Patient({
       ...req.body,
@@ -31,6 +38,10 @@ const createPatient = async (req, res) => {
     if (err.code === 11000) {
       console.log(`Duplicate error: ${err}`);
       res.render("patients/error", { message: "Duplicate record!" });
+    } else if (err.name === "ValidationError") {
+      const errors = Object.values(err.errors).map((e) => e.message);
+      console.log(`Data Model Errors: ${errors}`);
+      res.render("patients/error", { message: err });
     } else {
       console.log(err);
       res.render("patients/error", { message: err });
@@ -105,11 +116,15 @@ const updatePatientProfile = async (req, res) => {
     console.log(`nricfin: ${nricfin}`);
     console.log(req.body);
     const patientBody = req.body;
-    const patient = await Patient.findOneAndUpdate({ nricfin: nricfin }, patientBody, {
-      new: true,
-     runValidators: true,
-    });
-  
+    const patient = await Patient.findOneAndUpdate(
+      { nricfin: nricfin },
+      patientBody,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
     res.redirect(`/patients/show?nricfin=${nricfin}`);
   } catch (err) {
     console.log(`Error in updating: ${err}`);
@@ -120,7 +135,7 @@ const updatePatientProfile = async (req, res) => {
 };
 
 const delPatientProfile = (req, res) => {
-  console.log(req.params)
+  console.log(req.params);
   const nricfin = req.params.nricfin;
   const id = req.params.id;
   console.log(`nricfin: ${nricfin}`);
@@ -216,5 +231,5 @@ module.exports = {
   showPatient,
   updatePatientProfile,
   delPatientProfile,
-  directToHomePage
+  directToHomePage,
 };
