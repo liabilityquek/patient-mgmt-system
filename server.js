@@ -14,7 +14,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const sessionStore = MongoStore.create({
   mongoUrl: process.env.DATABASE_URL,
-  collectionName: 'sessions' // See below for details
+  collectionName: 'sessions' 
 });
 
 var app = express();

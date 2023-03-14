@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+
 // optional shortcut to the mongoose.Schema class
 const Schema = mongoose.Schema;
 
@@ -14,6 +15,12 @@ const usersSchema = new Schema(
       type: String,
       unique: true,
       required: true,
+      validate: {
+        validator: function(password) {
+          return validator.isStrongPassword(password, {minLength: 3});
+        },
+        message: "Password must be at least 3 characters long"
+      },
     },
     email: {
       type: String,

@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Patients = require('../models/patient');
 const QueueNo = require('../models/queueno');
 const User = require('../models/users');
-const Login = require('../models/login');
 
 const URL = process.env.DATABASE_URL;
 mongoose

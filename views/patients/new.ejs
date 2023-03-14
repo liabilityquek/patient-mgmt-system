@@ -2,9 +2,14 @@
     <h2>Create New Patient Record</h2>
     <form action="/patients" method="POST">
         <label>NRIC/FIN:
-            <input type="text" name="nricfin" /> </label><br />
+            <input type="text" name="nricfin" onkeyup="this.value = this.value.toUpperCase();" placeholder="Example: 1234A" pattern="[0-9]{4}[A-Za-z]{1}"
+            required/> 
+            <div class="requirements">
+                Please enter 4 digits followed by 1 alphabet.
+              </div>
+            </label><br />
         <label>Name:
-            <input type="text" name="name" /> </label><br />
+            <input type="text" name="name" onkeyup="this.value = this.value.toUpperCase();"/> </label><br />
         <label>Contact No:
             <input type="text" name="contactno" /> </label><br />
         <label>DOB:
@@ -25,20 +30,20 @@
                 <option value="E-PASS">E-PASS</option>
             </select> </label><br />
         <label>Street Address:
-            <input type="text" name="streetaddress" /> </label><br />
+            <input type="text" name="streetaddress" onkeyup="this.value = this.value.toUpperCase();"/> </label><br />
         <label>Postal Code:
             <input type="number" name="postalcode" /> </label><br />
         <label>Unit No:
-            <input type="text" name="unitno" /> </label><br />
+            <input type="text" name="unitno" onkeyup="this.value = this.value.toUpperCase();"/> </label><br />
         <label>Drug Allergies (separate with commas):
-            <input type="text" name="drugallergies" /> </label><br />
+            <input type="text" name="drugallergies" onkeyup="this.value = this.value.toUpperCase();"/> </label><br />
         <label>Vaccinated:
             <select id="vaccination" name="vaccination">
                 <option value="" disabled selected></option>
                 <option value="YES">YES</option>
                 <option value="NO">NO</option>
             </select> </label><br />
-        <label id="vaccination-type-label" style="display: none;">Vaccination Type:
+        <label id="vaccination-type-label" >Vaccination Type:
             <select name="vaccinationtype">
                 <option value="" disabled selected></option>
                 <option value="PFIZER">PFIZER</option>

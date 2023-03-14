@@ -29,7 +29,7 @@ const createQueueNo = async (req, res) => {
 const showQueueNo = async (req, res) => {
 
   try {
-    const queueno = await QueueNo.find().exec();
+    const queueno = await QueueNo.find().sort({type: 1}).exec();
 
     res.render("queueno/showqueue", { queueno });
   } catch (err) {

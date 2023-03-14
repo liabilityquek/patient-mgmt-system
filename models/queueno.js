@@ -25,6 +25,13 @@ const queueNoSchema = new Schema(
     },
     type: {
       type: String,
+      enum: ['Priority', 'Normal'],
+      validate: {
+        validator: function(v) {
+          return ['Priority', 'Normal'].includes(v);
+        },
+        message: "Queue Type is invalid"
+      }
     },
   },
   {

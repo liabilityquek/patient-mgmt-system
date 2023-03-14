@@ -51,12 +51,10 @@ const patientSchema = new Schema(
       type: String,
       unique: true,
       required: true,
-      validate: {
-        validator: function (v) {
-          return (v.toString().length = 5);
-        },
-        message: "NRIC/FIN must be 5 characters long",
-      },
+      match: /^[0-9]{4}[A-Za-z]{1}$/,
+      minlength: 5,
+      message: "NRIC/FIN must be 5 characters long",
+      
     },
     name: {
       type: String,
@@ -75,10 +73,24 @@ const patientSchema = new Schema(
     gender: {
       type: String,
       required: true,
+      enum: ['MALE', 'FEMALE'],
+      validate: {
+        validator: function(v) {
+          return ['MALE', 'FEMALE'].includes(v);
+        },
+        message: "Invalid gender type"
+      }
     },
     nationality: {
       type: String,
       required: true,
+      enum: ['SINGAPOREAN', 'WORK PERMIT', 'PR', 'S-PASS', 'E-PASS'],
+      validate: {
+        validator: function(v) {
+          return ['SINGAPOREAN', 'WORK PERMIT', 'PR', 'S-PASS', 'E-PASS'].includes(v);
+        },
+        message: "Invalid Nationality"
+      }
     },
     streetaddress: {
       type: String,
@@ -104,10 +116,24 @@ const patientSchema = new Schema(
     },
     vaccination: {
       type: String,
-      required: true
+      required: true,
+      enum: ['YES', 'NO'],
+      validate: {
+        validator: function(v) {
+          return ['YES', 'NO'].includes(v);
+        },
+        message: "Invalid option"
+      }
     },
     vaccinationtype: {
       type: String,
+      enum: ['PFIZER', 'MODERNA', 'NOVAVAX', 'SINOVAC'],
+      validate: {
+        validator: function(v) {
+          return ['PFIZER', 'MODERNA', 'NOVAVAX', 'SINOVAC'].includes(v);
+        },
+        message: "Invalid vaccination type"
+      }
     },
 
     log: [patientLogSchema],

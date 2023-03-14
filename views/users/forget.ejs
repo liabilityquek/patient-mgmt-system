@@ -15,7 +15,7 @@
   </label>
   <div>
     <label class="label-password">
-      <input type="text" class="text" name="password" placeholder="New Password" tabindex="2" required />
+      <input type="text" class="text" name="password" placeholder="New Password" tabindex="2" required minlength="3" pattern=".{3,}" title="Password must be at least 3 characters long"/>
       <span class="required">New Password</span>
     </label>
   </div>

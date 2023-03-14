@@ -15,7 +15,7 @@
                 <td><strong>Name:</strong></td>
                 <td>
                     <form method="POST" action="/patients/<%= p.nricfin %>?_method=PUT">
-                        <input type="text" name="name" value="<%= p.name %>">
+                        <input type="text" name="name" value="<%= p.name %>" onkeyup="this.value = this.value.toUpperCase();">
                         <button type="submit">Save</button>
                     </form>
                 </td>
@@ -73,7 +73,7 @@
                 <td><strong>Street Address:</strong></td>
                 <td>
                     <form method="POST" action="/patients/<%= p.nricfin%>?_method=PUT">
-                        <input type="text" name="streetaddress" value="<%= p.streetaddress %>">
+                        <input type="text" name="streetaddress" value="<%= p.streetaddress %>" onkeyup="this.value = this.value.toUpperCase();">
                         <button type="submit">Save</button>
                     </form>
                 </td>
@@ -100,7 +100,7 @@
                 <td><strong>Drug Allergies:</strong></td>
                 <td>
                     <form method="POST" action="/patients/<%= p.nricfin %>?_method=PUT">
-                        <input type="text" name="drugallergies" value="<%= p.drugallergies.join(', ')%>">
+                        <input type="text" name="drugallergies" value="<%= p.drugallergies.join(', ')%>" onkeyup="this.value = this.value.toUpperCase();">
                         <button type="submit">Save</button>
                     </form>
                 </td>
@@ -111,9 +111,9 @@
                     <form method="POST" action="/patients/<%= p.nricfin %>?_method=PUT">
                         <select name="vaccination">
                             <option value="" disabled selected></option>
-                            <option value="yes" <% if (p.vaccination==='yes' ) { %>selected<% } %>>YES
+                            <option value="YES" <% if (p.vaccination==='YES' ) { %>selected<% } %>>YES
                             </option>
-                            <option value="no" <% if (p.vaccination==='no' ) { %>selected<% } %>>NO
+                            <option value="NO" <% if (p.vaccination==='NO' ) { %>selected<% } %>>NO
                             </option>
                         </select>
                         <button type="submit">Save</button>
@@ -128,13 +128,13 @@
                             <option value="" disabled selected></option>
                             <option value="" <% if (p.vaccinationtype==='' ) { %>selected<% } %>>
                             </option>
-                            <option value="pfizer" <% if (p.vaccinationtype==='pfizer' ) { %>selected<% } %>>PFIZER
+                            <option value="PFIZER" <% if (p.vaccinationtype==='PFIZER' ) { %>selected<% } %>>PFIZER
                             </option>
-                            <option value="moderna" <% if (p.vaccinationtype==='moderna' ) { %>selected<% } %>>MODERNA
+                            <option value="MODERNA" <% if (p.vaccinationtype==='MODERNA' ) { %>selected<% } %>>MODERNA
                             </option>
-                            <option value="novavax" <% if (p.vaccinationtype==='novavax' ) { %>selected<% } %>>NOVAVAX
+                            <option value="NOVAVAX" <% if (p.vaccinationtype==='NOVAVAX' ) { %>selected<% } %>>NOVAVAX
                             </option>
-                            <option value="sinovac" <% if (p.vaccinationtype==='sinovac' ) { %>selected<% } %>>SINOVAC
+                            <option value="SINOVAC" <% if (p.vaccinationtype==='SINOVAC' ) { %>selected<% } %>>SINOVAC
                             </option>
                         </select>
                         <button type="submit">Save</button>
