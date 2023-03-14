@@ -89,7 +89,7 @@ const resetPassword = async (req, res) => {
       subject: "Reset Password Request",
     });
   } catch (err) {
-    res.render("users/error", { message: err });
+    res.render("users/forget", { message: err });
   }
 };
 
@@ -114,7 +114,7 @@ const login = async (req, res) => {
       req.session.userId = user._id;
       console.log(`from checkmatch userid: ${id}`);
       console.log(`req.session.userId: ${req.session.userId}`);
-      res.redirect("/");
+      res.redirect("/patients");
     } else {
       res.render("users/login", { message: "Invalid Credentials!" });
     }

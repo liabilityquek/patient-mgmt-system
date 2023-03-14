@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config();
 require('./config/database');
-var indexRouter = require('./routes/index');
 var patientsRouter = require('./routes/patients');
 const usersRouter = require('./routes/users');
 const queuenoRouter = require('./routes/queueno');
@@ -39,7 +38,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
 app.use('/patients', patientsRouter);
 app.use('/queueno', queuenoRouter);
 app.use('/users', usersRouter);

@@ -4,6 +4,10 @@ const newPatient = (req, res) => {
   res.render("patients/new");
 };
 
+const directToHomePage = (req, res) => {
+  res.render("patients");
+};
+
 const createPatient = async (req, res) => {
   console.log('Authorization: ', req.headers['authorization']);
   //req.body.vaccinated = !!req.body.vaccinated;
@@ -13,7 +17,7 @@ const createPatient = async (req, res) => {
     req.body.drugallergies = req.body.drugallergies.split(/\s*,\s*/);
   }
   try {
-    // Create a new Movie instance with the updated req.body object
+
     const patient = new Patient({
       ...req.body,
     });
@@ -22,7 +26,7 @@ const createPatient = async (req, res) => {
 
     console.log(`newPatient: ${newPatient}`);
 
-    res.redirect("/");
+    res.redirect("/patients");
   } catch (err) {
     if (err.code === 11000) {
       console.log(`Duplicate error: ${err}`);
@@ -124,7 +128,7 @@ const delPatientProfile = (req, res) => {
   Patient.findOneAndRemove({ nricfin: nricfin })
     .exec()
     .then(() => {
-      res.redirect("/");
+      res.redirect("/patients");
     });
 };
 
@@ -148,6 +152,7 @@ const delPatientLog = async (req, res) => {
   console.log(req.params);
   const log = req.params.log;
   const id = req.params.id;
+  const nricfin = req.query.nricfin;
   console.log(`objectId: ${id}`);
   console.log(`logId: ${log}`);
 
@@ -164,7 +169,7 @@ const delPatientLog = async (req, res) => {
       checkLog.splice(logIndex, 1);
       await patient.save();
       console.log(`Patient Log with ID ${log} deleted successfully`);
-      res.redirect("/");
+      res.redirect(`/patients`);
     }
   } catch (err) {
     console.log(`Error deleting patient log with ID ${log}: ${err}`);
@@ -176,6 +181,7 @@ const updatePatientLog = async (req, res) => {
   console.log(req.params);
   const log = req.params.log;
   const id = req.params.id;
+  const nricfin = req.query.nricfin;
   console.log(`objectId: ${id}`);
   console.log(`logId: ${log}`);
 
@@ -192,7 +198,7 @@ const updatePatientLog = async (req, res) => {
       checkLog[logIndex].content = req.body.content;
       await patient.save();
       console.log(`Log with ID ${log} updated successfully`);
-      res.redirect("/");
+      res.redirect(`/patients`);
     }
   } catch (err) {
     console.log(`Error updating Log with ID ${log}: ${err}`);
@@ -210,4 +216,5 @@ module.exports = {
   showPatient,
   updatePatientProfile,
   delPatientProfile,
+  directToHomePage
 };

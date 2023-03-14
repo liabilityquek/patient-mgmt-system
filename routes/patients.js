@@ -3,6 +3,7 @@ const router = express.Router();
 const patientsController = require("../controllers/patient");
 const {isAuth} = require("../controllers/users");
 
+router.get("/", isAuth, patientsController.directToHomePage);
 router.get("/new", isAuth, patientsController.newPatient);
 router.post("/",  isAuth, patientsController.createPatient);
 router.get("/lookup",  isAuth, patientsController.retrievePatient);
