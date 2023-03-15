@@ -1,13 +1,14 @@
+<link rel="stylesheet" href='/stylesheets/lookup.css' />
 <%- include('../partials/header') %>
 
-<h2>Today's Queue</h2>
-<table border="1">
+<table class="blueTable">
   <thead>
     <tr>
       <th>Queue No</th> 
       <th>Name</th>
       <th>Type</th>
       <th>Date</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -19,7 +20,7 @@
         <td><%= q.createdAtFormatted %></td>
         <td>
           <form method="POST" action="/queueno/<%= q._id %>?_method=DELETE">
-            <button type="submit">Delete</button>
+            <button type="submit">Delete Queue</button>
           </form>
         </td>
       </tr>

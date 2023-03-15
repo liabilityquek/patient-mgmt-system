@@ -28,7 +28,7 @@ app.use(session({
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 600000 }, //10 mins logout of inactivity
+  cookie: { maxAge: 6000000 }, //10 mins logout of inactivity
   store: sessionStore
 }))
 

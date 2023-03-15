@@ -1,5 +1,18 @@
+<link rel="stylesheet" href='/stylesheets/home.css' />
 <%- include('../partials/header') %>
 
+<p>
 
+  <div class="form-box">
+    <form action="/patients/show" method="GET">
+      <input type="text" name="nricfin" placeholder="Enter Patient's NRIC/FIN No">
+      <button type="submit" id="amend">Amend Patient Profile</button>
+    </form>
+  
+    <form action="/patients/lookup" method="GET">
+      <input type="text" name="nricfin" placeholder="Enter Patient's NRIC/FIN No">
+      <button type="submit" id="retrieve">Retrieve Patient Profile</button>
+    </form>
+  </div>
 
 <%- include('../partials/footer') %>

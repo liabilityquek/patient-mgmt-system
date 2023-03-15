@@ -1,127 +1,203 @@
-*
-{
-	margin:0px;
-	padding:0px;	
-}
-body
-{
-	/* background-image: url(../images/bg.jpg); */
-	background-position:fixed;
-	background-repeat:no-repeat;
-	background-size:100%;
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-.logo img
-{
-	overflow:hidden;
-	height:80px;
-	width:80px;
-	padding-bottom:10px;
-	position:relative;
-	top:-10px;
-	left:20px;
-	
+#logout{
+	background: none; /* Remove default background */
+    border: none; /* Remove default border */
+    cursor: pointer; /* Change the cursor to a hand on hover */
+    font-size: inherit; /* Inherit the font size from the parent element */
+    font-family: inherit; /* Inherit the font family from the parent element */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    
 }
-.title p
-{
-	font-size:30px;
-	color:#fff;
-}
-.login
-{
-	margin:100px auto;
-	margin-bottom:0px;
-	width:55%;
-}
-.header
-{
 
-	background-color:#337AB7;
-	color:#fff;
-        padding: 10px;
-	
+#logout:hover{
+  text-decoration: underline;
 }
-.dmenu
-{
-    background-color: #fff;
-    display:block;
-    padding: 0px;
+
+.html {
+  font-size: 62.5%;
+}
+
+.navbar input[type="checkbox"],
+.navbar .hamburger-lines {
+  display: none;
+}
+
+.container {
+  max-width: 1200px;
+  width: 90%;
+  margin: auto;
+}
+
+.navbar {
+  box-shadow: 0px 5px 10px 0px #aaa;
+  position: fixed;
+  width: 100%;
+  background: #fff;
+  color: #000;
+  opacity: 0.85;
+  z-index: 100;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  height: 64px;
+  align-items: center;
+}
+
+.menu-items {
+  order: 2;
+  display: flex;
+}
+.logo {
+  order: 1;
+  font-size: 2.3rem;
+}
+
+.menu-items li {
+  list-style: none;
+  margin-left: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.navbar a {
+  color: #444;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar a:hover {
+  color: #117964;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    opacity: 0.95;
+  }
+
+  .navbar-container input[type="checkbox"],
+  .navbar-container .hamburger-lines {
+    display: block;
+  }
+
+  .navbar-container {
+    display: block;
     position: relative;
-    top:7px;
-    left:50px;
-    border-radius: 20px;
-}
-
-.row .logintitle
-{
-	background-color:#337AB7;
-	color:white;
-	font-size:20px;
-}
-.footer
-{
-	margin-top:33px;
-	background-color: #000;
-	color:#fff;
-	text-align: center;
-	background-attachment:fixed;
-	
-}
-.footer div{
-
-	padding:0px 0px;
-}
-.footer div div
-{	
-	padding:7px 0px;
-	background-color:#337AB7;
-	color:#fff;
-	font-size:20px;
-	text-align: center;
-}
-/* inner page */
-.menucontent
-{
-	/* background-image: url(../images/bg3.jpg); */
-	height:603px;
-}
-.contentinside
-{
-	margin:0px auto;
-	margin-top:10px;
-}
-.maincontent
-{
-/* background-image: url(../images/bgcontent.jpg); */
-background-size:100%;
-background-scroll:fixed;
-height:603px;
-
-}
-#adddoctor
-{
-	display:none;
-}
-.active
-{
-	background-color:#EEEEEE;
-}
-
-#dashboard{
-	color:#337AB7;
-}
-
-.btn-white {
-	background-color: #fff; 
-	color: #333; 
+    height: 64px;
   }
 
-  .requirements {
-	padding: 0 30px 0 50px;
-	color: #999;
-	max-height: 0;
-	transition: 0.28s;
-	overflow: hidden;
-	color: red;
-	font-style: italic;
+  .navbar-container input[type="checkbox"] {
+    position: absolute;
+    display: block;
+    height: 32px;
+    width: 30px;
+    top: 20px;
+    left: 20px;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
   }
+
+  .navbar-container .hamburger-lines {
+    display: block;
+    height: 28px;
+    width: 35px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .navbar-container .hamburger-lines .line {
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-radius: 10px;
+    background: #333;
+  }
+
+  .navbar-container .hamburger-lines .line1 {
+    transform-origin: 0% 0%;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .navbar-container .hamburger-lines .line2 {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .navbar-container .hamburger-lines .line3 {
+    transform-origin: 0% 100%;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .navbar .menu-items {
+    padding-top: 100px;
+    background: #fff;
+    height: 100vh;
+    max-width: 300px;
+    transform: translate(-150%);
+    display: flex;
+    flex-direction: column;
+    margin-left: -40px;
+    padding-left: 40px;
+    transition: transform 0.5s ease-in-out;
+    box-shadow: 5px 0px 10px 0px #aaa;
+    overflow: scroll;
+  }
+
+  .navbar .menu-items li {
+    margin-bottom: 1.8rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .logo {
+    order: 1;
+    font-size: 2.3rem;
+    margin-left: 0;
+  }
+
+  .navbar form button {
+	background: none;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+	text-decoration: underline;
+  }
+
+  .navbar-container input[type="checkbox"]:checked ~ .menu-items {
+    transform: translateX(0);
+  }
+
+  .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+    transform: rotate(45deg);
+  }
+
+  .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+    transform: scaleY(0);
+  }
+
+  .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+    transform: rotate(-45deg);
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar-container input[type="checkbox"]:checked ~ .logo {
+    display: none;
+  }
+}

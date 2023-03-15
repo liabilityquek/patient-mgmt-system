@@ -97,7 +97,7 @@ const patientSchema = new Schema(
       required: true,
     },
     postalcode: {
-      type: Number,
+      type: String,
       required: true,
       validate: {
         validator: function (v) {

@@ -1,0 +1,112 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700);
+
+
+
+form > div > select {
+  cursor: pointer;
+  width: 100%;
+  border: 0;
+  padding: 20px 20px 20px 50px;
+  background: #eee;
+  appearance: none;
+  
+}
+
+form > div > select:focus {
+  outline: 0;
+  background: white;
+}
+form > div > select {
+  cursor: pointer;
+  color: #999;
+  
+}
+
+
+form {
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+form > div {
+  position: relative;
+  background: white;
+  border-bottom: 1px solid #ccc;
+}
+
+form > div > label {
+  opacity: 0.3;
+  font-weight: bold;
+  position: absolute;
+  top: 22px;
+  left: 20px;
+}
+
+form > div > input[type="text"] ,input[type="date"]{
+  width: 100%;
+  border: 0;
+  padding: 20px 20px 20px 50px;
+  background: #eee;
+  color: #999;
+}
+
+form > div > input[type="text"]:focus {
+  outline: 0;
+  background: white;
+}
+
+form > div > input[type="text"]:focus + label {
+  opacity: 0;
+}
+
+form > div > input[type="text"]:valid {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: 20px 20px;
+}
+
+form > div > input[type="text"]:valid + label {
+  opacity: 0;
+}
+
+
+form > div > input[type="text"]:invalid:not(:focus):not(:placeholder-shown) + label {
+  opacity: 0;
+}
+
+form > div > input[type="text"]:invalid:focus:not(:placeholder-shown) ~ .requirements {
+  max-height: 200px;
+  padding: 0 30px 20px 50px;
+}
+
+form > div .requirements {
+  padding: 0 30px 0 50px;
+  color: #999;
+  max-height: 0;
+  transition: 0.28s;
+  overflow: hidden;
+  color: red;
+  font-style: italic;
+}
+
+form input[type="submit"] {
+  display: block;
+  width: 100%;
+  margin: 20px 0;
+  background: #41D873;
+  color: white;
+  border: 0;
+  padding: 20px;
+  font-size: 2rem;
+}
+
+body {
+  background: #333;
+  font-family: 'PT Sans', sans-serif;
+  padding: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
