@@ -30,7 +30,7 @@ const createPatient = async (req, res) => {
     });
 
     const newPatient = await patient.save(); //update
-
+    
     console.log(`newPatient: ${newPatient}`);
 
     res.redirect("/patients");

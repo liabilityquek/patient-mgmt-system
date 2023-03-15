@@ -127,10 +127,10 @@ const patientSchema = new Schema(
     },
     vaccinationtype: {
       type: String,
-      enum: ['PFIZER', 'MODERNA', 'NOVAVAX', 'SINOVAC'],
+      enum: [' ','PFIZER', 'MODERNA', 'NOVAVAX', 'SINOVAC'],
       validate: {
         validator: function(v) {
-          return ['PFIZER', 'MODERNA', 'NOVAVAX', 'SINOVAC'].includes(v);
+          return [' ','PFIZER', 'MODERNA', 'NOVAVAX', 'SINOVAC'].includes(v);
         },
         message: "Invalid vaccination type"
       }
