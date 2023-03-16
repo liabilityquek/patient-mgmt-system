@@ -370,8 +370,8 @@ Various sources which I have seek guidance from:
 </li>
 <br>
 
-## Game Asset Attribution
-The game assets in this project does not belong to me. All rights belong to the original artists and owners. Below are the links to the game assets used in this project:
+## Application Asset Attribution
+The CSS in this project does not belong to me. All rights belong to the original artists and owners. Below are the links to the CSS used in this project:
 <li><a href=https://codepen.io/alvaromontoro/pen/JjoWVmx>Login form CSS from Codepen</a>
 </li>
 <li><a href=https://codepen.io/sanketbodke/pen/LYyzzYb>Nav Bar CSS from Codepen</a>
