@@ -368,6 +368,8 @@ Various sources which I have seek guidance from:
 </li>
 <li><a href=https://www.freecodecamp.org/news/how-to-test-in-express-and-mongoose-apps>Unit testing using Jest in express</a>
 </li>
+<li><a href=https://stackoverflow.com/questions/60899999/is-there-any-other-method-for-deleting-a-data-in-mongoose-after-a-given-time>Deleting a data after a given time in mongoose</a>
+</li>
 <br>
 
 ## Application Asset Attribution

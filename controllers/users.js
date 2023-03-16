@@ -4,7 +4,7 @@ const sendEmail = require("../app/index");
 const saltRounds = 10;
 
 const index = async (req, res) => {
-  res.render("users/login", { message: "" });
+  res.render("users", { message: "" });
 };
 
 const directToCreateUser = async (req, res) => {
@@ -33,17 +33,17 @@ const createUserLoginDetails = async (req, res) => {
       password: passwordHash,
     });
 
-    if (res.status(201)) {
-      res.redirect("/users");
+    if (res.status(200)) {
+      res.redirect("/");
     }
   } catch (err) {
     if (err.code === 11000) {
-      res.render("users/login", { message: "Userid already exist!" });
+      res.render("users/signup", { message: "Userid already exist!" });
     }else if (err.name === "ValidationError") {
       const errors = Object.values(err.errors).map((e) => e.message);
-      res.render("users/login", { message: errors });
+      res.render("users/signup", { message: errors });
   }else{console.log(err);
-    res.render("patients/error", { message: err });
+    res.render("users/error", { message: err });
   }
 };
 }
@@ -86,7 +86,7 @@ const resetPassword = async (req, res) => {
     const hash = await bcrypt.hash(password, salt);
     user.password = hash;
     await user.save();
-    res.redirect("/users");
+    res.redirect("/");
 
     await sendEmail({
       email: user.email,
@@ -107,7 +107,7 @@ const login = async (req, res) => {
     const user = await User.findOne({ userid: userid }).exec();
 
     if (!user) {
-      res.render("users/login", { message: "Invalid Credentials!" });
+      res.render("users", { message: "Invalid Credentials!" });
       return;
     }
 
@@ -119,10 +119,10 @@ const login = async (req, res) => {
       console.log(`req.session.userId: ${req.session.userId}`);
       res.redirect("/patients");
     } else {
-      res.render("users/login", { message: "Invalid Credentials!" });
+      res.render("users", { message: "Invalid Credentials!" });
     }
   } catch (err) {
-    res.render("users/login", { message: "Invalid Credentials!" });
+    res.render("users", { message: "Invalid Credentials!" });
   }
 };
 
@@ -150,7 +150,7 @@ const logoutSession = async (req, res) => {
     req.session.destroy();
     console.log("Session destroyed");
   }
-  res.redirect("/users");
+  res.redirect("/");
 };
 
 module.exports = {

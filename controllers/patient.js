@@ -1,6 +1,5 @@
 const Patient = require("../models/patient");
 const url = "https://maps.googleapis.com/maps/api/geocode/json?address=";
-//const axios = require("axios");
 
 const newPatient = (req, res) => {
   res.render("patients/new");
@@ -11,15 +10,8 @@ const directToHomePage = (req, res) => {
 };
 
 const createPatient = async (req, res) => {
-  const streetaddress = req.body.streetaddress;
-  const apiKey = process.env.GOOGLE_API_KEY;
-  const apiUrl = `${url}${encodeURIComponent(streetaddress)}&key=${apiKey}`;
 
   try {
-    // const response = await axios.get(apiUrl);
-    // const results = response.data.results;
-    // if (results && results.length > 0) {
-    //   const postalcode = results[0].address_components[5].long_name;
 
     if (req.body.drugallergies) {
       req.body.drugallergies = req.body.drugallergies.split(/\s*,\s*/);
