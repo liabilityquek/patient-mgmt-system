@@ -47,7 +47,7 @@ queueNoSchema.virtual("updatedAtFormatted").get(function () {
   return this.updated_at.toLocaleString("en-UK");
 });
 
-queueNoSchema.index({queueNo: 1}, { expireAfterSeconds: 10 });
+queueNoSchema.index({created_at: 1}, { expireAfterSeconds: expireDuration });
 
 const QueueNo = mongoose.model('QueueNo', queueNoSchema);
 module.exports = QueueNo;
