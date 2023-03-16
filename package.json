@@ -9,7 +9,6 @@
     "test": "jest --testTimeout=5000"
   },
   "dependencies": {
-    "@googlemaps/google-maps-services-js": "^3.3.27",
     "bcrypt": "^5.1.0",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "~1.4.4",

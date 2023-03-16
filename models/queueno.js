@@ -2,14 +2,10 @@ const mongoose = require("mongoose");
 // optional shortcut to the mongoose.Schema class
 const Schema = mongoose.Schema;
 
-const options = {
-  weekday: "long",
-  year: "numeric",
-  month: "numeric",
-  day: "numeric",
-};
 let today = new Date();
-let currentDay = today.toLocaleDateString("en-Uk", options) + " Queue";
+
+const midnight = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0, 0 );
+const expireDuration = (midnight - today) / 1000;
 
 const queueNoSchema = new Schema(
   {
@@ -39,7 +35,8 @@ const queueNoSchema = new Schema(
       createdAt: "created_at",
       updatedAt: "updated_at",
     },
-  }
+  },
+  
 );
 
 queueNoSchema.virtual("createdAtFormatted").get(function () {
@@ -50,5 +47,7 @@ queueNoSchema.virtual("updatedAtFormatted").get(function () {
   return this.updated_at.toLocaleString("en-UK");
 });
 
-const QueueNo = mongoose.model(currentDay, queueNoSchema);
+queueNoSchema.index({queueNo: 1}, { expireAfterSeconds: 10 });
+
+const QueueNo = mongoose.model('QueueNo', queueNoSchema);
 module.exports = QueueNo;

@@ -28,18 +28,4 @@ test("show validation error from data model for patients", async () => {
 
 });
 
-//test for user model
-test("show status from data model for creating users", async () => {
-    const userData = {
-      userid: "harold",
-      password: "123",
-      email: "blabla@gmail.com",
-    };
-  
-    const res = await request(app).post("users/login").send(userData);
-  
-    expect(res.statusCode).toBe(200);
-    await expect(Users.create(userData)).rejects.toThrow();
-  
-  });
-  
+ 

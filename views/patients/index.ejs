@@ -5,12 +5,12 @@
 
   <div class="form-box">
     <form action="/patients/show" method="GET">
-      <input type="text" name="nricfin" placeholder="Enter Patient's NRIC/FIN No">
+      <input type="text" name="nricfin" placeholder="Enter Patient's NRIC/FIN No" onkeyup="this.value = this.value.toUpperCase();">
       <button type="submit" id="amend">Amend Patient Profile</button>
     </form>
   
     <form action="/patients/lookup" method="GET">
-      <input type="text" name="nricfin" placeholder="Enter Patient's NRIC/FIN No">
+      <input type="text" name="nricfin" placeholder="Enter Patient's NRIC/FIN No" onkeyup="this.value = this.value.toUpperCase();">
       <button type="submit" id="retrieve">Retrieve Patient Profile</button>
     </form>
   </div>

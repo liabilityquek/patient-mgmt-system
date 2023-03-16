@@ -39,10 +39,14 @@ const createUserLoginDetails = async (req, res) => {
   } catch (err) {
     if (err.code === 11000) {
       res.render("users/login", { message: "Userid already exist!" });
-      return;
-    }
+    }else if (err.name === "ValidationError") {
+      const errors = Object.values(err.errors).map((e) => e.message);
+      res.render("users/login", { message: errors });
+  }else{console.log(err);
+    res.render("patients/error", { message: err });
   }
 };
+}
 
 const directToForgetPassword = async (req, res) => {
   res.render("users/forget", { message: "" });

@@ -1,6 +1,7 @@
+<link rel="stylesheet" href='/stylesheets/amend.css' />
 <%- include('../partials/header') %>
 
-    <h2>Patient Profile</h2>
+<div class="amend">
     <table border="1">
 
         <% patients.forEach(p=> { %>
@@ -126,7 +127,7 @@
                     <form method="POST" action="/patients/<%= p.nricfin %>?_method=PUT">
                         <select name="vaccinationtype">
                             <option value="" disabled selected></option>
-                            <option value="" <% if (p.vaccinationtype==='' ) { %>selected<% } %>>
+                            <option value=" " <% if (p.vaccinationtype==='' ) { %>selected<% } %>>
                             </option>
                             <option value="PFIZER" <% if (p.vaccinationtype==='PFIZER' ) { %>selected<% } %>>PFIZER
                             </option>
@@ -146,11 +147,11 @@
                 <%= p.createdAtFormatted %>
             </td>
             </tr>
-
+</table>
             <form method="POST" action="/patients/<%= p.nricfin %>?_method=DELETE">
                 <button type="submit">Delete Patient Profile</button>
             </form>
-
+        </div>
             <% }) %>
 
 

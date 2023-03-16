@@ -1,6 +1,6 @@
 const Patient = require("../models/patient");
 const url = "https://maps.googleapis.com/maps/api/geocode/json?address=";
-const axios = require("axios");
+//const axios = require("axios");
 
 const newPatient = (req, res) => {
   res.render("patients/new");
@@ -41,7 +41,7 @@ const createPatient = async (req, res) => {
     } else if (err.name === "ValidationError") {
       const errors = Object.values(err.errors).map((e) => e.message);
       console.log(`Data Model Errors: ${errors}`);
-      res.render("patients/error", { message: err });
+      res.render("patients/error", { message: errors });
     } else {
       console.log(err);
       res.render("patients/error", { message: err });
