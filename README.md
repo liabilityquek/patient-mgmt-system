@@ -76,6 +76,7 @@ Brainstorming what are the fields required for all data models and which referen
 <li>Enable users to login, logout and reset password.</li>
 <li>Enable to create new user.</li>
 <li>Authenticating routes.</li>
+<li>Using 3rd party API Mailtrap to test for reset email sent.</li>
 <br>
 
 <br>
@@ -92,6 +93,11 @@ Brainstorming what are the fields required for all data models and which referen
  <p align="center">
   <a href="" rel="noopener">
  <img width=800px height=600px src="/image/signup.png" alt="Create User"></a>
+</p>
+<br>
+ <p align="center">
+  <a href="" rel="noopener">
+ <img width=800px height=600px src="/image/emailtesting.png" alt="Create User"></a>
 </p>
 <br>
 
@@ -129,29 +135,26 @@ Brainstorming what are the fields required for all data models and which referen
 
 ## Deliverables Timeline
 <strong><u>Day 1:</u></strong>
-<li>Drafting up the routes</li>
+<li>Working and drafting on the routes layout</li>
 <li>Creating the data models</li>
-<li>Brainstroming the syntax required for the game</li>
-<li>Writing up the backbone of the game</li>
-<li>Getting both the animations and sounds to work</li>
 <br>
 <strong><u>Day 2:</u></strong>
-<li>Writing up the backbone of the game</li>
-<li>Introduce both game and difficulty level</li>
-<li>DOM manipulation and inserting click event listener</li>
-<li>Implementing setTimeout</li>
+<li>Setting up the routes; MVC approach</li>
+<li>Connecting the controller with model</li>
+<li>Inserting validation in the data model</li>
+<li>Doing testing on the front end</li>
 <br>
 <strong><u>Day 3:</u></strong>
 <br>
-<li>DOM manipulation and inserting click event listener</li>
-<li>CSS structure</li>
-<li>HTML structure</li>
+<li>Debugging errors on the routes, controller and view</li>
+<li>Doing testing on the front end</li>
+<li>Error validation on the front end</li>
 <br>
 <strong><u>Day 4:</u></strong>
 <br>
-<li>DOM manipulation and inserting click event listener</li>
+<li>Unit testing using Jest</li>
 <li>CSS structure</li>
-<li>HTML structure</li>
+<li>EJS structure</li>
 <br>
 <strong><u>Day 5:</u></strong>
 <br>
@@ -160,162 +163,217 @@ Brainstorming what are the fields required for all data models and which referen
 
 ## Key Takeaways
 These are key takeaways when working on the project:
-<li>Drafting up project requirements</li>
+<li>Drafting up data models requirements and how to insert some validation</li>
 <li>Making it a habit to comment the codes for easy reference and readability</li>
 <li>Writing mulitple console.log syntax to ensure that the function or codes are returning the correct values</li>
 <li>Assign meaningful name to functions for easy readability</li>
-<li>Create functions in order to reduce duplication codes</li>
-<li>Returning multiple values from an function using an object like the one shown below</li>
+<li>Using the MVC approach to keep codes organised</li>
+<li>Getting the RESTful routes right in the first place is crucial</li>
 
-```js
-function difficultyLevel(selectDifficultyLevel){
-
-	switch (selectDifficultyLevel) {
-
-		case 'Easy':
-			maxLevel = 20;
-			numberOfLives = 0;  
-			break;
-
-		case 'Normal':
-			maxLevel = 25;
-			numberOfLives = 2;			
-			break;
-
-		case 'Difficult':
-			maxLevel = 3;
-			numberOfLives = 2;
-			buttonColors.push('orange', 'purple');	
-			$('#difficult-level').css('display', 'flex');		
-			break;
-		default:
-			$('#enter').css('cursor', 'none');  
-			break;
-	}
-	return{maxLevel, numberOfLives} ;
-}
-
-let difficulty = difficultyLevel(selectDifficultyLevel);
-maxLevel = difficulty.maxLevel;
-numberOfLives = difficulty.numberOfLives;
-
-```
-<li>Learning callbacks in class and applying it in practise</li>
-<br>
-<p>The difficultyLevel function is the callback function that is called by getDifficuiltyLevel to compute the values for the maximum level and number of lives.</p> 
-<p>Which is later executed in response to a specific event such as the player clicking on a dropdown menu.</p>
-
-```js
-function difficultyLevel(selectDifficultyLevel){
-	switch (selectDifficultyLevel) {
-		case 'Easy':
-			maxLevel = 20;
-			numberOfLives = 0;  
-			break;
-		case 'Normal':
-			maxLevel = 25;
-			numberOfLives = 2;			
-			break;
-
-		case 'Difficult':
-			maxLevel = 30;
-			numberOfLives = 2;
-			buttonColors.push('orange', 'purple');	
-			$('#difficult-level').css('display', 'flex');		
-			break;
-		default:
-			$('#enter').css('cursor', 'none');  
-			break;
-	}
-	return{maxLevel, numberOfLives} ;
-}
-
-function getDifficuiltyLevel(difficultyLevel) {
-	$('.dropdown-content a').click(function() {
-		const clickDropDownContent = $(this);
-		if (selectDifficultyLevel !== '' && clickDropDownContent.text() !== selectDifficultyLevel) {
-			$('.dropdown-content a').removeClass('pressed');
-		}
-		clickDropDownContent.addClass('pressed');
-		selectDifficultyLevel = clickDropDownContent.text();
-		difficultyLevel(selectDifficultyLevel); 
-	});
-}
-getDifficuiltyLevel(difficultyLevel);
-```
 <br>
 
-getGameLevel function is used to extract the gameLevel from the generateColorCombination which will then be used to return the value of the gameLevel.
+<strong><u>Patient Data Model Validation:</u></strong>
+```js
+const patientSchema = new Schema(
+  {
+    nricfin: {
+      type: String,
+      unique: true,
+      required: true,
+      match: /^[0-9]{4}[A-Za-z]{1}$/,
+      minlength: 5,
+      message: "NRIC/FIN must be 5 characters long",
+    },
+    name: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    contactno: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    dob: {
+      type: Date,
+      required: true,
+    },
+    gender: {
+      type: String,
+      required: true,
+      enum: ["MALE", "FEMALE"],
+      validate: {
+        validator: function (v) {
+          return ["MALE", "FEMALE"].includes(v);
+        },
+        message: "Invalid gender type",
+      },
+    },
+    nationality: {
+      type: String,
+      required: true,
+      enum: ["SINGAPOREAN", "WORK PERMIT", "PR", "S-PASS", "E-PASS"],
+      validate: {
+        validator: function (v) {
+          return [
+            "SINGAPOREAN",
+            "WORK PERMIT",
+            "PR",
+            "S-PASS",
+            "E-PASS",
+          ].includes(v);
+        },
+        message: "Invalid Nationality",
+      },
+    },
+    streetaddress: {
+      type: String,
+      required: true,
+    },
+    postalcode: {
+      type: String,
+      required: true,
+      validate: {
+        validator: function (v) {
+          return (v.toString().length = 6);
+        },
+        message: "Postal Code must be 6 digits long",
+      },
+    },
+    unitno: {
+      type: String,
+      required: true,
+    },
+    drugallergies: {
+      type: [String],
+      required: true,
+    },
+    vaccination: {
+      type: String,
+      required: true,
+      enum: ["YES", "NO"],
+      validate: {
+        validator: function (v) {
+          return ["YES", "NO"].includes(v);
+        },
+        message: "Invalid option",
+      },
+    },
+    vaccinationtype: {
+      type: String,
+      enum: [" ", "PFIZER", "MODERNA", "NOVAVAX", "SINOVAC"],
+      validate: {
+        validator: function (v) {
+          return [" ", "PFIZER", "MODERNA", "NOVAVAX", "SINOVAC"].includes(v);
+        },
+        message: "Invalid vaccination type",
+      },
+    },
+
+    log: [patientLogSchema],
+  },
+
+```
+<br>
+
+<strong><u>Mongoose Validation Error in controller to view:</u></strong>
 
 ```js
+const createPatient = async (req, res) => {
 
-function generateColorCombination(getGameLevel){
-    userClickPattern = [];
-    $('#level-title').text(`Level ${gameLevel}/Level ${maxLevel}`);
-    $('.container').css('pointer-events', 'auto');
-    gamePattern = [];
-	
-    for(let i = 0; i < gameLevel; i++){
-		
-		if (gameLevel > maxLevel) {
-			checkWin();
-			break;
-		}
-        const colorIndex = Math.floor(Math.random() * buttonColors.length);
-        const color = buttonColors[colorIndex];
-        gamePattern.push(color);
-        gamePattern.forEach((color, index) => {
-			setTimeout(() => {
-				$('#' + color).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-				playSound(color);
-			}, index * 500);
-		});
-        console.log("gamePattern: " + gamePattern);
-	}
-	getGameLevel(gameLevel);
-}
+  try {
 
-function getGameLevel(gameLevel){
-	return gameLevel;
-}
+    if (req.body.drugallergies) {
+      req.body.drugallergies = req.body.drugallergies.split(/\s*,\s*/);
+    }
+
+    const patient = new Patient({
+      ...req.body,
+    });
+    const newPatient = await patient.save(); //update
+    console.log(`newPatient: ${newPatient}`);
+    res.redirect("/patients");
+  } 
+  catch (err) {
+    if (err.code === 11000) {
+      console.log(`Duplicate error: ${err}`);
+      res.render("patients/error", { message: "Duplicate record!" });
+    } else if (err.name === "ValidationError") {
+      const errors = Object.values(err.errors).map((e) => e.message);
+      console.log(`Data Model Errors: ${errors}`);
+      res.render("patients/error", { message: errors });
+    } else {
+      console.log(err);
+      res.render("patients/error", { message: err });
+    }
+  }
+};
+```
+<br>
+
+<strong><u>Validation Error in EJS:</u></strong>
+
+```html
+
+<div>
+      <input type="text" name="nricfin" required placeholder=" " onkeyup="this.value = this.value.toUpperCase();"
+        pattern="[0-9]{4}[A-Za-z]{1}" required />
+      <label for="nricfin">NRIC/FIN Example: 1234A</label>
+      <div class="requirements">
+        Please enter 4 digits followed by 1 alphabet.
+      </div>
+    </div>
+
+    <div>
+      <input type="text" name="name" required placeholder=" " onkeyup="this.value = this.value.toUpperCase();"
+        required />
+      <label for="name">Name</label>
+
+    </div>
 ```
 
 ## Future Enhancements
-<p>As this game is part of a project submission, there would not be an future amendments made to this.</p>However, if there were any future enhancements to be made, these would be the following changes:</p>
-<li>Rewrite the code using the MVC approach</li>
-<li>Insert a countdown timer for the Normal levels and above</li>
-<li>Introduce different sounds/genre for the player to choose from</li>
-<li>Allowing the game to be paused half-way which also reduce player's live</li>
-<li>Include a mixtype to hype up the music</li>
+<p>As this application is part of a project submission, there would not be an future amendments made to this.</p>However, if there were any future enhancements to be made, these would be the following changes:</p>
+<li>Improve the UX interface</li>
+<li>Insert a calendar page to allow for appointments booking</li>
+<li>Perform more unit testing</li>
+<li>Utilise more 3rd party API like Twilio</li>
 
 <br>
 ## References
 Various sources which I have seek guidance from:
 </li>
-<li><a href=https://stackoverflow.com/questions/9419263/how-to-play-audio>Adding audio using javascript</a>
+<li><a href=https://levelup.gitconnected.com/handling-errors-in-mongoose-express-for-display-in-react-d966287f573b>Handling Mongoose Errors</a>
 </li>
-<li><a href=https://codepen.io/BenLBlood/pen/LGLEoJ>Simon Game</a>
+<li><a href=https://jonathan-holloway.medium.com/node-and-express-session-a23eb36a052>Login and Authentication using sessions</a>
 </li>
-<li><a href=https://www.javascripttutorial.net/javascript-return-multiple-values>Returning Multiple Values from a Function</a>
+<li><a href=https://nodemailer.com/about>Nodemailer documentation</a>
 </li>
-<li><a href=https://www.geeksforgeeks.org/jquery-not-method-with-examples>How to use not method in jQuery</a>
+<li><a href=https://stackoverflow.com/questions/63963246/bcrypt-mongoose-change-user-password>Changing password with bcrypt</a>
 </li>
 <li><a href=https://archive.jestjs.io/docs/en/24.x/configuration>Configuring Jest</a>
 </li>
-<li><a href=https://stackoverflow.com/questions/44970683/how-to-test-if-function-was-called-with-defined-parameters-tohavebeencalledwit>How to test if function was called with defined parameters ( toHaveBeenCalledWith ) with Jest</a>
+<li><a href=https://mongoosejs.com/docs/validation.html>Mongoose Validation</a>
 </li>
-<li><a href=https://stackoverflow.com/questions/40992628/what-does-jest-fn-do-and-how-can-i-use-it>What does jest.fn() do and how can I use it?</a>
+<li><a href=https://mongoosejs.com/docs/api/model.html#model_Model-findOne>Mongoose findOne</a>
 </li>
-<li><a href=https://stackoverflow.com/questions/49096093/how-do-i-test-a-jest-console-log>How do I test a jest console.log</a>
+<li><a href=https://stackoverflow.com/questions/8675642/how-can-i-format-a-date-coming-from-mongodb>Date formatting in MongoDB</a>
 </li>
-<li><a href=https://stackoverflow.com/questions/33638385/simulate-keydown-on-document-for-jest-unit-testing>Simulate keydown on document for JEST unit testing</a>
+<li><a href=https://mongoosejs.com/docs/tutorials/virtuals.html>Mongoose virtuals for dates</a>
 </li>
-
+</li>
+<li><a href=https://mongoosejs.com/docs/api/model.html#model_Model-findByIdAndUpdate>Mongoose findByIdAndUpdate</a>
+</li>
+<li><a href=https://jestjs.io/docs/expect#rejects>Jest throw rejects</a>
+</li>
+<li><a href=https://www.freecodecamp.org/news/how-to-test-in-express-and-mongoose-apps>Unit testing using Jest in express</a>
+</li>
 <br>
 
 ## Game Asset Attribution
 The game assets in this project does not belong to me. All rights belong to the original artists and owners. Below are the links to the game assets used in this project:
-<li><a href=https://codepen.io/araltasher/pen/XBXKjb>Pixel Heart</a>
-<li><a href=https://github.com/londonappbrewery/Simon-Game>App Brewery</a>
-<li><a href=https://pixabay.com/sound-effects/tadaa-47995>Audio</a>
+<li><a href=https://codepen.io/alvaromontoro/pen/JjoWVmx>Login form CSS from Codepen</a>
+</li>
+<li><a href=https://codepen.io/sanketbodke/pen/LYyzzYb>Nav Bar CSS from Codepen</a>
+</li>
 

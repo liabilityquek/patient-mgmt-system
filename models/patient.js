@@ -54,7 +54,6 @@ const patientSchema = new Schema(
       match: /^[0-9]{4}[A-Za-z]{1}$/,
       minlength: 5,
       message: "NRIC/FIN must be 5 characters long",
-      
     },
     name: {
       type: String,
@@ -73,24 +72,30 @@ const patientSchema = new Schema(
     gender: {
       type: String,
       required: true,
-      enum: ['MALE', 'FEMALE'],
+      enum: ["MALE", "FEMALE"],
       validate: {
-        validator: function(v) {
-          return ['MALE', 'FEMALE'].includes(v);
+        validator: function (v) {
+          return ["MALE", "FEMALE"].includes(v);
         },
-        message: "Invalid gender type"
-      }
+        message: "Invalid gender type",
+      },
     },
     nationality: {
       type: String,
       required: true,
-      enum: ['SINGAPOREAN', 'WORK PERMIT', 'PR', 'S-PASS', 'E-PASS'],
+      enum: ["SINGAPOREAN", "WORK PERMIT", "PR", "S-PASS", "E-PASS"],
       validate: {
-        validator: function(v) {
-          return ['SINGAPOREAN', 'WORK PERMIT', 'PR', 'S-PASS', 'E-PASS'].includes(v);
+        validator: function (v) {
+          return [
+            "SINGAPOREAN",
+            "WORK PERMIT",
+            "PR",
+            "S-PASS",
+            "E-PASS",
+          ].includes(v);
         },
-        message: "Invalid Nationality"
-      }
+        message: "Invalid Nationality",
+      },
     },
     streetaddress: {
       type: String,
@@ -104,7 +109,7 @@ const patientSchema = new Schema(
           return (v.toString().length = 6);
         },
         message: "Postal Code must be 6 digits long",
-      }
+      },
     },
     unitno: {
       type: String,
@@ -112,28 +117,28 @@ const patientSchema = new Schema(
     },
     drugallergies: {
       type: [String],
-      required: true
+      required: true,
     },
     vaccination: {
       type: String,
       required: true,
-      enum: ['YES', 'NO'],
+      enum: ["YES", "NO"],
       validate: {
-        validator: function(v) {
-          return ['YES', 'NO'].includes(v);
+        validator: function (v) {
+          return ["YES", "NO"].includes(v);
         },
-        message: "Invalid option"
-      }
+        message: "Invalid option",
+      },
     },
     vaccinationtype: {
       type: String,
-      enum: [' ','PFIZER', 'MODERNA', 'NOVAVAX', 'SINOVAC'],
+      enum: [" ", "PFIZER", "MODERNA", "NOVAVAX", "SINOVAC"],
       validate: {
-        validator: function(v) {
-          return [' ','PFIZER', 'MODERNA', 'NOVAVAX', 'SINOVAC'].includes(v);
+        validator: function (v) {
+          return [" ", "PFIZER", "MODERNA", "NOVAVAX", "SINOVAC"].includes(v);
         },
-        message: "Invalid vaccination type"
-      }
+        message: "Invalid vaccination type",
+      },
     },
 
     log: [patientLogSchema],
@@ -155,7 +160,7 @@ patientSchema.virtual("updatedAtFormatted").get(function () {
 
 patientSchema.virtual("dobFormatted").get(function () {
   const date = new Date(this.dob);
-  return date.toLocaleDateString("en-Uk", options)
+  return date.toLocaleDateString("en-Uk", options);
 });
 
 const Patient = mongoose.model("Patient", patientSchema);
