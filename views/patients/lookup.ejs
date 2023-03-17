@@ -45,7 +45,7 @@
             <tr>
               <td>
                 <form method="POST" action="/patients/<%= p._id %>/<%= patientlog._id%>?_method=PUT">
-                  <input type="text" name="content" value="<%= patientlog.content %>">
+                  <textarea name="content"><%= patientlog.content %></textarea>
                   <button type="submit">Update Log</button>
                 </form>
               
@@ -83,7 +83,7 @@
 
 <h2>Add Patient Log</h2>
 <form method="POST" action="/patients/<%= nricfin %>">
-  <input type="text" name="content" placeholder="Enter patient log here">
+  <textarea name="content" placeholder="Enter patient log here"></textarea>
   <button type="submit">Add</button>
 </form>
 
