@@ -9,7 +9,7 @@ const createQueueNo = async (req, res) => {
       queueNo: nextQueueNo,
     });
 
-    const savedQueueNo = await queueNo.save(); //update
+    const savedQueueNo = await queueNo.save(); 
 
     console.log(`savedQueueNo: ${savedQueueNo}`);
 

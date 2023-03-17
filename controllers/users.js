@@ -69,8 +69,7 @@ const resetPassword = async (req, res) => {
     const user = await User.findOne({ userid: userid }).exec();
 
     if (!user) {
-      //not ok
-      res.render("users/forget", { message: "Invalid User!" });
+       res.render("users/forget", { message: "Invalid User!" });
       return;
     }
 

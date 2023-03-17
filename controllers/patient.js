@@ -1,5 +1,4 @@
 const Patient = require("../models/patient");
-const url = "https://maps.googleapis.com/maps/api/geocode/json?address=";
 
 const newPatient = (req, res) => {
   res.render("patients/new");
