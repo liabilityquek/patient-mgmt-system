@@ -140,7 +140,7 @@ const isAuth = async (req, res, next) => {
       res.status(403).send("Forbidden");
     }
   } else {
-    res.redirect("/users");
+    res.redirect("/");
   }
 };
 
