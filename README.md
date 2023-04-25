@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=800px height=600px src="/image/home.png" alt="Patient Management System"></a>
+ <img style="max-width: 100%;" src="/image/home.png" alt="Patient Management System"></a>
 </p>
 
 <h3 align="center">Patient Management System</h3>
@@ -82,22 +82,22 @@ Brainstorming what are the fields required for all data models and which referen
 <br>
  <p align="center">
   <a href="" rel="noopener">
- <img width=800px height=600px src="/image/login.png" alt="Login"></a>
+ <img style="max-width: 100%;" src="/image/login.png" alt="Login"></a>
 </p>
 <br>
  <p align="center">
   <a href="" rel="noopener">
- <img width=800px height=600px src="/image/forget.png" alt="Forget Password"></a>
+ <img style="max-width: 100%;" src="/image/forget.png" alt="Forget Password"></a>
 </p>
 <br>
  <p align="center">
   <a href="" rel="noopener">
- <img width=800px height=600px src="/image/signup.png" alt="Create User"></a>
+ <img style="max-width: 100%;" src="/image/signup.png" alt="Create User"></a>
 </p>
 <br>
  <p align="center">
   <a href="" rel="noopener">
- <img width=800px height=600px src="/image/emailtesting.png" alt="Create User"></a>
+ <img style="max-width: 100%;" src="/image/emailtesting.png" alt="Create User"></a>
 </p>
 <br>
 
@@ -109,17 +109,17 @@ Brainstorming what are the fields required for all data models and which referen
 <br>
  <p align="center">
   <a href="" rel="noopener">
- <img width=800px height=600px src="/image/retrieve.png" alt="Login"></a>
+ <img style="max-width: 100%;" src="/image/retrieve.png" alt="Login"></a>
 </p>
 <br>
  <p align="center">
   <a href="" rel="noopener">
- <img width=800px height=600px src="/image/amend.png" alt="Forget Password"></a>
+ <img style="max-width: 100%;" src="/image/amend.png" alt="Forget Password"></a>
 </p>
 <br>
  <p align="center">
   <a href="" rel="noopener">
- <img width=800px height=600px src="/image/signup.png" alt="Create User"></a>
+ <img style="max-width: 100%;" src="/image/signup.png" alt="Create User"></a>
 </p>
 <br>
 
@@ -129,7 +129,7 @@ Brainstorming what are the fields required for all data models and which referen
 <br>
  <p align="center">
   <a href="" rel="noopener">
- <img width=800px height=600px src="/image/showqueue.png" alt="Create User"></a>
+ <img style="max-width: 100%;" src="/image/showqueue.png" alt="Create User"></a>
 </p>
 <br>
 
