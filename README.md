@@ -17,7 +17,13 @@ The Patient Managment System (PMS) is a simple application to store the patient 
 
 ## Deployment
 
-The application is deployed on Cyclic. You would need to <a href="https://cockatoo-sun-hat.cyclic.app/signup">create</a> an account to access the application.
+The application is deployed on <a href="https://cockatoo-sun-hat.cyclic.app">Cyclic</a>. 
+<br/>
+Dummy Login Credentials:
+```s
+Userid: sample
+Password:123
+```
 
 ## Features
 <li>CRUD model on patients, queue nubmer and user</li>
